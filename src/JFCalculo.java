@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.Toolkit;
+import javax.swing.JTextPane;
 
 public class JFCalculo extends JFrame {
 
@@ -50,10 +52,11 @@ public class JFCalculo extends JFrame {
 	 * Create the frame.
 	 */
 	public JFCalculo() {
-		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFCalculo.class.getResource("/image/icon_circuit.png")));
+		setTitle("Calculadora de Filtros");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 718, 552);
+		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,11 +64,11 @@ public class JFCalculo extends JFrame {
 		lblImages.setBackground(Color.WHITE);
 		
 		lblImages.setIcon(null);
-		lblImages.setBounds(178, 11, 518, 235);
+		lblImages.setBounds(178, 11, 490, 161);
 		contentPane.add(lblImages);
 		
 		
-		txtResposta.setBounds(178, 278, 518, 234);
+		txtResposta.setBounds(178, 183, 490, 267);
 		contentPane.add(txtResposta);
 		
 		comboBox.addActionListener(new ActionListener() {
@@ -91,6 +94,7 @@ public class JFCalculo extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnGerarCircuito = new JButton("Gerar Circuito");
+		btnGerarCircuito.setIcon(new ImageIcon(JFCalculo.class.getResource("/image/calcular.png")));
 		btnGerarCircuito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				double k;
@@ -196,12 +200,14 @@ public class JFCalculo extends JFrame {
 		contentPane.add(lblNewLabel_2_1);
 		
 		JButton btnBuscar = new JButton("Buscar Projeto");
+		btnBuscar.setIcon(new ImageIcon(JFCalculo.class.getResource("/image/loupe.png")));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nomeProj = txtNomeProj.getText();
 				if (projeto.verificaExistenciaNome(nomeProj)) {
-					setResposta(projeto.getRespostaProjeto(nomeProj),
+					setResposta(projeto.getRespostaProjeto(nomeProj),					
 					projeto.getImagemProjeto(nomeProj));
+					txtNomeProj.setText("");
 				}else {
 					txtResposta.setText("Projeto Inexistente!!!");
 				}
@@ -221,6 +227,7 @@ public class JFCalculo extends JFrame {
 		txtNomeProj.setColumns(10);
 		
 		JButton btnListarProjeto = new JButton("Listar Projetos");
+		btnListarProjeto.setIcon(new ImageIcon(JFCalculo.class.getResource("/image/listar.png")));
 		btnListarProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtResposta.setText(projeto.listarNomeProjetos());
@@ -229,6 +236,22 @@ public class JFCalculo extends JFrame {
 		});
 		btnListarProjeto.setBounds(10, 197, 158, 23);
 		contentPane.add(btnListarProjeto);
+		
+		JLabel lblNewLabel_3 = new JLabel("Developed By:");
+		lblNewLabel_3.setBounds(10, 374, 158, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Matheus Roque Petrachin");
+		lblNewLabel_3_1.setBounds(10, 399, 158, 14);
+		contentPane.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("Rafael Reis Alves");
+		lblNewLabel_3_2.setBounds(10, 418, 158, 14);
+		contentPane.add(lblNewLabel_3_2);
+		
+		JLabel lblNewLabel_3_3 = new JLabel("Andrey da Luz");
+		lblNewLabel_3_3.setBounds(10, 436, 158, 14);
+		contentPane.add(lblNewLabel_3_3);
 		
 		
 		
